@@ -114,6 +114,7 @@ p, *, *, *, /cas, *, *
 p, *, *, *, /api/webauthn, *, *
 p, *, *, GET, /api/get-release, *, *
 p, *, *, GET, /api/get-default-application, *, *
+p, *, *, POST, /api/enforce, *, *
 `
 
 		sa := stringadapter.NewAdapter(ruleText)
