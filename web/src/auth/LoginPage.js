@@ -30,6 +30,7 @@ import {CountDownInput} from "../common/CountDownInput";
 import SelectLanguageBox from "../SelectLanguageBox";
 import {withTranslation} from "react-i18next";
 import {CaptchaModal} from "../common/CaptchaModal";
+import {withRouter} from "react-router-dom";
 
 const {TabPane} = Tabs;
 
@@ -339,7 +340,7 @@ class LoginPage extends React.Component {
           title="Sign Up Error"
           subTitle={"The application does not allow to sign up new account"}
           extra={[
-            <Button type="primary" key="signin" onClick={() => Setting.redirectToLoginPage(application)}>
+            <Button type="primary" key="signin" onClick={() => Setting.redirectToLoginPage(application, this.props.history)}>
               {
                 i18next.t("login:Sign In")
               }
@@ -784,7 +785,6 @@ class LoginPage extends React.Component {
         <div className="login-content" style={{margin: this.parseOffset(application.formOffset)}}>
           {Setting.inIframe() ? null : <div dangerouslySetInnerHTML={{__html: application.formCss}} />}
           <div className="login-panel">
-            <SelectLanguageBox id="language-box-corner" style={{top: "50px"}} />
             <div className="side-image" style={{display: application.formOffset !== 4 ? "none" : null}}>
               <div dangerouslySetInnerHTML={{__html: application.formSideHtml}} />
             </div>
@@ -800,6 +800,7 @@ class LoginPage extends React.Component {
                   {/* {*/}
                   {/*  this.state.clientId !== null ? "Redirect" : null*/}
                   {/* }*/}
+                  <SelectLanguageBox id="language-box-corner" style={{top: "55px", right: "5px", position: "absolute"}} />
                   {
                     this.renderSignedInBox()
                   }
@@ -816,4 +817,4 @@ class LoginPage extends React.Component {
   }
 }
 
-export default withTranslation()(LoginPage);
+export default withTranslation()(withRouter(LoginPage));
